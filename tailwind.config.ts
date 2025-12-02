@@ -38,6 +38,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          glow: "hsl(var(--accent-glow))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -47,16 +48,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+        hero: {
+          start: "hsl(var(--hero-gradient-start))",
+          end: "hsl(var(--hero-gradient-end))",
         },
+      },
+      backgroundImage: {
+        "hero-gradient": "linear-gradient(135deg, hsl(var(--hero-gradient-start)), hsl(var(--hero-gradient-end)))",
+        "accent-gradient": "linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-glow)) 100%)",
+      },
+      boxShadow: {
+        soft: "var(--shadow-soft)",
+        medium: "var(--shadow-medium)",
+        glow: "var(--shadow-glow)",
       },
       borderRadius: {
         lg: "var(--radius)",
