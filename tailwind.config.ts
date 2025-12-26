@@ -53,14 +53,20 @@ export default {
           end: "hsl(var(--hero-gradient-end))",
         },
       },
+      fontFamily: {
+        display: ['Playfair Display', 'Georgia', 'serif'],
+        body: ['Source Sans 3', 'system-ui', 'sans-serif'],
+      },
       backgroundImage: {
         "hero-gradient": "linear-gradient(135deg, hsl(var(--hero-gradient-start)), hsl(var(--hero-gradient-end)))",
         "accent-gradient": "linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--accent-glow)) 100%)",
+        "mesh-gradient": "radial-gradient(at 40% 20%, hsl(168 76% 36% / 0.15) 0px, transparent 50%), radial-gradient(at 80% 0%, hsl(222 47% 22% / 0.1) 0px, transparent 50%), radial-gradient(at 0% 50%, hsl(168 76% 36% / 0.1) 0px, transparent 50%)",
       },
       boxShadow: {
         soft: "var(--shadow-soft)",
         medium: "var(--shadow-medium)",
         glow: "var(--shadow-glow)",
+        elegant: "var(--shadow-elegant)",
       },
       borderRadius: {
         lg: "var(--radius)",
