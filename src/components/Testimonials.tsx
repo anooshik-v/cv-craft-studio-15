@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Quote } from "lucide-react";
+import { Quote, Star } from "lucide-react";
 
 export const Testimonials = () => {
   const ref = useRef(null);
@@ -26,18 +26,21 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section id="testimonials" className="py-20 lg:py-32 bg-background" ref={ref}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-24 lg:py-36 bg-background relative overflow-hidden" ref={ref}>
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px]" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-primary mb-4">Testimonials</h2>
-          <div className="w-20 h-1 bg-accent mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            What colleagues and clients say about working with me
+          <h2 className="section-title">What People Say</h2>
+          <div className="accent-bar mt-6 mb-8" />
+          <p className="section-subtitle">
+            Feedback from colleagues and clients about working together
           </p>
         </motion.div>
 
@@ -45,22 +48,30 @@ export const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
-              className="bg-card rounded-2xl p-8 border border-border shadow-soft hover:shadow-medium transition-all relative"
+              className="relative bg-card rounded-3xl p-8 lg:p-10 border border-border card-hover"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
             >
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
-                <Quote className="w-6 h-6 text-accent" />
+              {/* Quote icon */}
+              <div className="absolute -top-5 left-8 w-10 h-10 bg-accent rounded-xl flex items-center justify-center shadow-glow">
+                <Quote className="w-5 h-5 text-accent-foreground" />
               </div>
               
-              <p className="text-foreground/80 leading-relaxed mb-6 mt-4">
+              {/* Stars */}
+              <div className="flex gap-1 mb-6 pt-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                ))}
+              </div>
+              
+              <p className="text-foreground/80 leading-relaxed mb-8 italic">
                 "{testimonial.content}"
               </p>
               
-              <div className="border-t border-border pt-4">
-                <p className="font-semibold text-foreground">{testimonial.name}</p>
-                <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+              <div className="pt-6 border-t border-border">
+                <p className="font-display font-semibold text-foreground text-lg">{testimonial.name}</p>
+                <p className="text-sm text-accent font-medium">{testimonial.role}</p>
               </div>
             </motion.div>
           ))}
