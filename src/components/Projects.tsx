@@ -239,20 +239,18 @@ export const Projects = () => {
                     {app.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-1.5">
-                    {app.contributions.slice(0, 3).map((contrib) => (
-                      <span
-                        key={contrib}
-                        className="px-2 py-0.5 text-xs bg-accent/10 text-accent rounded-md"
-                      >
-                        {contrib}
-                      </span>
-                    ))}
-                    {app.contributions.length > 3 && (
-                      <span className="px-2 py-0.5 text-xs bg-accent/10 text-accent rounded-md">
-                        +{app.contributions.length - 3} more
-                      </span>
-                    )}
+                  <div className="pt-3 border-t border-border/50">
+                    <p className="text-xs font-semibold text-muted-foreground mb-2">Key Contributions:</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {app.contributions.map((contrib) => (
+                        <span
+                          key={contrib}
+                          className="px-2 py-1 text-xs bg-accent/10 text-accent rounded-md font-medium"
+                        >
+                          {contrib}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </motion.div>
