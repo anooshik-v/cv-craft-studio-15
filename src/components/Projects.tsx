@@ -1,40 +1,108 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Globe, Heart, Award } from "lucide-react";
+import { Users, Globe, Heart, Award, Smartphone, Leaf, MapPin, FileText, Recycle, Video, Baby, TreePine, Store } from "lucide-react";
 
 export const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const projects = [
+  const researchProjects = [
     {
       icon: Users,
       title: "Shell & Claw - Restaurant UX Research",
-      description: "Conducted comprehensive usability study for restaurant ordering system, identifying key friction points in the customer journey and providing actionable recommendations for improved conversion rates.",
+      description: "Conducted comprehensive usability study for restaurant ordering system, identifying key friction points in the customer journey.",
       tags: ["Usability Testing", "User Interviews", "Affinity Mapping"],
       impact: "Identified 12+ usability issues",
     },
     {
       icon: Globe,
       title: "Bentley Safe - Campus Safety App",
-      description: "Led UX research initiative for campus safety application, focusing on emergency response flows and accessibility for diverse student populations.",
-      tags: ["Accessibility Evaluation", "Stakeholder Research", "Information Architecture"],
+      description: "Led UX research initiative for campus safety application, focusing on emergency response flows and accessibility.",
+      tags: ["Accessibility Evaluation", "Stakeholder Research"],
       impact: "Enhanced emergency UX flows",
     },
     {
       icon: Heart,
-      title: "Eleanor Health - Behavioral Healthcare Platform",
-      description: "Evaluated digital mental health platform usability, emphasizing trust-building elements and reducing cognitive load for users in vulnerable states.",
-      tags: ["Healthcare UX", "Cognitive Load Assessment", "Trust Design"],
+      title: "Eleanor Health - Behavioral Healthcare",
+      description: "Evaluated digital mental health platform usability, emphasizing trust-building elements and cognitive load reduction.",
+      tags: ["Healthcare UX", "Cognitive Load Assessment"],
       impact: "Improved patient engagement",
     },
+  ];
+
+  const mobileApps = [
     {
-      icon: Award,
-      title: "Koala Wallet - Cryptocurrency Mobile App",
-      description: "Led development of cryptocurrency wallet serving thousands of users, focusing on security-conscious onboarding and accessibility best practices.",
-      tags: ["Flutter Development", "Security UX", "Inclusive Design"],
-      impact: "Thousands of active users",
+      icon: Smartphone,
+      name: "Koala Wallet",
+      description: "Cryptocurrency wallet with NFT support and multi-chain capabilities",
+      availability: "Worldwide",
+      contributions: ["UI", "Custom UI & Animations", "REST API", "Firebase Push Notifications", "Analytics"],
+      color: "from-purple-500/20 to-pink-500/20",
+    },
+    {
+      icon: Video,
+      name: "Viveo Health",
+      description: "Telemedicine platform for 24/7 medical consultations and health records",
+      availability: "Worldwide",
+      contributions: ["Chat/Video call", "REST API", "Firebase Push Notifications", "Payment System"],
+      color: "from-blue-500/20 to-cyan-500/20",
+    },
+    {
+      icon: Baby,
+      name: "Noomee",
+      description: "App for children with Autism, ADHD, Asperger - featuring social stories and routines",
+      availability: "Worldwide",
+      contributions: ["UX Research", "Android/iOS Native Services", "REST API", "Firebase Push Notifications"],
+      color: "from-green-400/20 to-emerald-500/20",
+    },
+    {
+      icon: FileText,
+      name: "Doxi",
+      description: "Document management app for storing IDs, vaccination cards and important files",
+      availability: "Worldwide",
+      contributions: ["UI/UX", "REST API", "Document Management", "Payment System"],
+      color: "from-slate-400/20 to-slate-600/20",
+    },
+    {
+      icon: Leaf,
+      name: "Cannachange",
+      description: "Sustainable cannabis recycling platform with dispensary locator",
+      availability: "USA & Canada",
+      contributions: ["UI/UX", "Map Integration", "REST API", "Firebase Push Notifications", "Payment System"],
+      color: "from-teal-500/20 to-green-500/20",
+    },
+    {
+      icon: Recycle,
+      name: "Trash-Talk",
+      description: "Environmental education app helping schools become plastic-free",
+      availability: "Ireland",
+      contributions: ["UI/UX", "Deep Linking", "REST API", "Authorization", "Animations"],
+      color: "from-emerald-500/20 to-teal-500/20",
+    },
+    {
+      icon: TreePine,
+      name: "CommuniTree",
+      description: "Eco-friendly lifestyle app with daily challenges and personalized tree growth",
+      availability: "Ireland",
+      contributions: ["UI/UX", "Deep Linking", "REST API", "Firebase Authorization", "Google Maps"],
+      color: "from-green-600/20 to-lime-500/20",
+    },
+    {
+      icon: Store,
+      name: "Local Loyal",
+      description: "Support local UK businesses with membership cards and exclusive discounts",
+      availability: "UK",
+      contributions: ["UI/UX", "Payment System", "REST API", "QR Scanning", "Google Maps"],
+      color: "from-orange-500/20 to-amber-500/20",
+    },
+    {
+      icon: MapPin,
+      name: "Byoorakn",
+      description: "Water fountain locator app for Armenia with crowdsourced locations",
+      availability: "Armenia",
+      contributions: ["UI", "Google Places/Directions", "REST API", "Firebase Push Notifications"],
+      color: "from-sky-400/20 to-blue-500/20",
     },
   ];
 
@@ -65,8 +133,8 @@ export const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto mb-16">
-          {projects.map((project, index) => (
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
+          {researchProjects.map((project, index) => (
             <motion.div
               key={project.title}
               className="bg-card rounded-3xl overflow-hidden border border-border card-hover group"
@@ -74,36 +142,91 @@ export const Projects = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <div className="p-8 lg:p-10">
-                <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent transition-colors duration-300">
-                  <project.icon className="w-7 h-7 text-accent group-hover:text-accent-foreground transition-colors duration-300" />
+              <div className="p-6 lg:p-8">
+                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300">
+                  <project.icon className="w-6 h-6 text-accent group-hover:text-accent-foreground transition-colors duration-300" />
                 </div>
                 
-                <h3 className="text-xl font-display font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
+                <h3 className="text-lg font-display font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                   {project.description}
                 </p>
                 
-                <div className="flex flex-wrap gap-2 mb-6">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1.5 text-xs font-semibold bg-accent/10 text-accent rounded-full"
+                      className="px-2.5 py-1 text-xs font-semibold bg-accent/10 text-accent rounded-full"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="pt-4 border-t border-border">
+                <div className="pt-3 border-t border-border">
                   <p className="text-sm font-semibold text-accent">{project.impact}</p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Mobile Apps Portfolio */}
+        <motion.div
+          className="mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <h3 className="text-2xl font-display font-bold text-foreground text-center mb-3">Mobile App Development</h3>
+          <p className="text-muted-foreground text-center mb-10 max-w-2xl mx-auto">
+            Apps I've contributed to as a Flutter Developer, combining technical expertise with UX research
+          </p>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+            {mobileApps.map((app, index) => (
+              <motion.div
+                key={app.name}
+                className={`bg-gradient-to-br ${app.color} rounded-2xl p-5 border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg group`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
+              >
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-background/80 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                    <app.icon className="w-5 h-5 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-foreground text-base">{app.name}</h4>
+                    <span className="text-xs text-muted-foreground">{app.availability}</span>
+                  </div>
+                </div>
+                
+                <p className="text-sm text-foreground/80 mb-4 leading-relaxed">
+                  {app.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-1.5">
+                  {app.contributions.slice(0, 3).map((contrib) => (
+                    <span
+                      key={contrib}
+                      className="px-2 py-0.5 text-xs bg-background/60 text-muted-foreground rounded-md"
+                    >
+                      {contrib}
+                    </span>
+                  ))}
+                  {app.contributions.length > 3 && (
+                    <span className="px-2 py-0.5 text-xs bg-background/60 text-muted-foreground rounded-md">
+                      +{app.contributions.length - 3} more
+                    </span>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Leadership Section */}
         <motion.div
