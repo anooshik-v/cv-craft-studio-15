@@ -1,7 +1,18 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Globe, Heart, Award, Smartphone, Leaf, MapPin, FileText, Recycle, Video, Baby, TreePine, Store } from "lucide-react";
+import { Users, Globe, Heart, Smartphone, Leaf, MapPin, FileText, Recycle, Video, Baby, TreePine, Store } from "lucide-react";
+
+// Import project images
+import appKoala from "@/assets/projects/app-10.jpg";
+import appViveo from "@/assets/projects/app-9.jpg";
+import appNoomee from "@/assets/projects/app-8.jpg";
+import appDoxi from "@/assets/projects/app-7.jpg";
+import appCannachange from "@/assets/projects/app-6.jpg";
+import appTrashTalk from "@/assets/projects/app-5.jpg";
+import appCommuniTree from "@/assets/projects/app-4.jpg";
+import appLocalLoyal from "@/assets/projects/app-3.jpg";
+import appByoorakn from "@/assets/projects/app-2.jpg";
 
 export const Projects = () => {
   const ref = useRef(null);
@@ -39,6 +50,7 @@ export const Projects = () => {
       availability: "Worldwide",
       contributions: ["UI", "Custom UI & Animations", "REST API", "Firebase Push Notifications", "Analytics"],
       color: "from-purple-500/20 to-pink-500/20",
+      image: appKoala,
     },
     {
       icon: Video,
@@ -47,6 +59,7 @@ export const Projects = () => {
       availability: "Worldwide",
       contributions: ["Chat/Video call", "REST API", "Firebase Push Notifications", "Payment System"],
       color: "from-blue-500/20 to-cyan-500/20",
+      image: appViveo,
     },
     {
       icon: Baby,
@@ -55,6 +68,7 @@ export const Projects = () => {
       availability: "Worldwide",
       contributions: ["UX Research", "Android/iOS Native Services", "REST API", "Firebase Push Notifications"],
       color: "from-green-400/20 to-emerald-500/20",
+      image: appNoomee,
     },
     {
       icon: FileText,
@@ -63,6 +77,7 @@ export const Projects = () => {
       availability: "Worldwide",
       contributions: ["UI/UX", "REST API", "Document Management", "Payment System"],
       color: "from-slate-400/20 to-slate-600/20",
+      image: appDoxi,
     },
     {
       icon: Leaf,
@@ -71,6 +86,7 @@ export const Projects = () => {
       availability: "USA & Canada",
       contributions: ["UI/UX", "Map Integration", "REST API", "Firebase Push Notifications", "Payment System"],
       color: "from-teal-500/20 to-green-500/20",
+      image: appCannachange,
     },
     {
       icon: Recycle,
@@ -79,6 +95,7 @@ export const Projects = () => {
       availability: "Ireland",
       contributions: ["UI/UX", "Deep Linking", "REST API", "Authorization", "Animations"],
       color: "from-emerald-500/20 to-teal-500/20",
+      image: appTrashTalk,
     },
     {
       icon: TreePine,
@@ -87,6 +104,7 @@ export const Projects = () => {
       availability: "Ireland",
       contributions: ["UI/UX", "Deep Linking", "REST API", "Firebase Authorization", "Google Maps"],
       color: "from-green-600/20 to-lime-500/20",
+      image: appCommuniTree,
     },
     {
       icon: Store,
@@ -95,6 +113,7 @@ export const Projects = () => {
       availability: "UK",
       contributions: ["UI/UX", "Payment System", "REST API", "QR Scanning", "Google Maps"],
       color: "from-orange-500/20 to-amber-500/20",
+      image: appLocalLoyal,
     },
     {
       icon: MapPin,
@@ -103,6 +122,7 @@ export const Projects = () => {
       availability: "Armenia",
       contributions: ["UI", "Google Places/Directions", "REST API", "Firebase Push Notifications"],
       color: "from-sky-400/20 to-blue-500/20",
+      image: appByoorakn,
     },
   ];
 
@@ -189,39 +209,51 @@ export const Projects = () => {
             {mobileApps.map((app, index) => (
               <motion.div
                 key={app.name}
-                className={`bg-gradient-to-br ${app.color} rounded-2xl p-5 border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg group`}
+                className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg group"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-background/80 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                    <app.icon className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-bold text-foreground text-base">{app.name}</h4>
-                    <span className="text-xs text-muted-foreground">{app.availability}</span>
-                  </div>
+                {/* Project Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={app.image} 
+                    alt={`${app.name} app screenshot`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${app.color} opacity-40`} />
                 </div>
                 
-                <p className="text-sm text-foreground/80 mb-4 leading-relaxed">
-                  {app.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-1.5">
-                  {app.contributions.slice(0, 3).map((contrib) => (
-                    <span
-                      key={contrib}
-                      className="px-2 py-0.5 text-xs bg-background/60 text-muted-foreground rounded-md"
-                    >
-                      {contrib}
-                    </span>
-                  ))}
-                  {app.contributions.length > 3 && (
-                    <span className="px-2 py-0.5 text-xs bg-background/60 text-muted-foreground rounded-md">
-                      +{app.contributions.length - 3} more
-                    </span>
-                  )}
+                <div className="p-5">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
+                      <app.icon className="w-5 h-5 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-foreground text-base">{app.name}</h4>
+                      <span className="text-xs text-muted-foreground">{app.availability}</span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                    {app.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-1.5">
+                    {app.contributions.slice(0, 3).map((contrib) => (
+                      <span
+                        key={contrib}
+                        className="px-2 py-0.5 text-xs bg-accent/10 text-accent rounded-md"
+                      >
+                        {contrib}
+                      </span>
+                    ))}
+                    {app.contributions.length > 3 && (
+                      <span className="px-2 py-0.5 text-xs bg-accent/10 text-accent rounded-md">
+                        +{app.contributions.length - 3} more
+                      </span>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
