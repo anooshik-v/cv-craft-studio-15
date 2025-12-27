@@ -86,8 +86,7 @@ export const Hero = () => {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 text-base px-8 py-6"
+                className="bg-primary-foreground/15 border border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/25 text-base px-8 py-6 font-semibold backdrop-blur-sm"
               >
                 <a href="/Varsik_Nikoyan_CV.pdf" download="Varsik_Nikoyan_CV.pdf">
                   <Download className="mr-2" size={18} />
