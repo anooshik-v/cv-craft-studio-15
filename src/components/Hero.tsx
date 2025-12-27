@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Linkedin, Mail, FileText } from "lucide-react";
-import profileImage from "@/assets/profile-placeholder.jpg";
+import { ArrowDown, Linkedin, Mail, Download } from "lucide-react";
+import profileImage from "@/assets/varsik-photo.jpg";
 
 export const Hero = () => {
   const scrollToSection = (href: string) => {
@@ -84,12 +84,15 @@ export const Hero = () => {
                 Get in Touch
               </Button>
               <Button
-                onClick={() => scrollToSection("#experience")}
+                asChild
                 size="lg"
                 variant="outline"
                 className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 text-base px-8 py-6"
               >
-                View Experience
+                <a href="/Varsik_Nikoyan_CV.pdf" download="Varsik_Nikoyan_CV.pdf">
+                  <Download className="mr-2" size={18} />
+                  Download CV
+                </a>
               </Button>
             </motion.div>
 
@@ -115,14 +118,6 @@ export const Hero = () => {
                 aria-label="Email"
               >
                 <Mail size={22} className="group-hover:scale-110 transition-transform" />
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => { e.preventDefault(); scrollToSection("#contact"); }}
-                className="p-4 rounded-2xl bg-primary-foreground/10 hover:bg-accent text-primary-foreground hover:text-accent-foreground transition-all shadow-soft hover:shadow-glow group"
-                aria-label="Download Resume"
-              >
-                <FileText size={22} className="group-hover:scale-110 transition-transform" />
               </a>
             </motion.div>
           </motion.div>
