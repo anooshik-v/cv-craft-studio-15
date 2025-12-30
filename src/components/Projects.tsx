@@ -207,61 +207,67 @@ export const Projects = () => {
             Apps I've contributed to as a Flutter Developer, combining technical expertise with UX research
           </p>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="space-y-6 max-w-5xl mx-auto">
             {mobileApps.map((app, index) => (
               <motion.div
                 key={app.name}
-                className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg group flex flex-col"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
+                className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-xl group"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + index * 0.08 }}
               >
-                {/* Project Image */}
-                <div 
-                  className="relative aspect-[4/3] overflow-hidden cursor-pointer"
-                  onClick={() => setSelectedImage({ src: app.image, alt: `${app.name} app screenshot` })}
-                >
-                  <img 
-                    src={app.image} 
-                    alt={`${app.name} app screenshot`}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${app.color} opacity-30`} />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                    <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                </div>
-                
-                {/* Content */}
-                <div className="p-5 flex flex-col flex-grow">
-                  {/* App Header */}
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
-                      <app.icon className="w-5 h-5 text-accent" />
+                <div className="flex flex-col md:flex-row">
+                  {/* Project Image - Left side */}
+                  <div 
+                    className="relative w-full md:w-72 lg:w-80 flex-shrink-0 cursor-pointer overflow-hidden"
+                    onClick={() => setSelectedImage({ src: app.image, alt: `${app.name} app screenshot` })}
+                  >
+                    <div className="aspect-[4/3] md:aspect-auto md:h-full">
+                      <img 
+                        src={app.image} 
+                        alt={`${app.name} app screenshot`}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
-                    <div>
-                      <h4 className="font-display font-bold text-foreground text-base leading-tight">{app.name}</h4>
-                      <span className="text-xs text-muted-foreground">{app.availability}</span>
+                    <div className={`absolute inset-0 bg-gradient-to-r ${app.color} opacity-20`} />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                      <ZoomIn className="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
                     </div>
                   </div>
                   
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {app.description}
-                  </p>
-                  
-                  {/* Key Contributions */}
-                  <div className="pt-3 border-t border-border/50 mt-auto">
-                    <p className="text-xs font-semibold text-foreground/70 mb-2">Key Contributions:</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {app.contributions.map((contrib) => (
-                        <span
-                          key={contrib}
-                          className="px-2.5 py-1 text-xs bg-accent/10 text-accent rounded-full font-medium"
-                        >
-                          {contrib}
-                        </span>
-                      ))}
+                  {/* Content - Right side */}
+                  <div className="flex-1 p-6 lg:p-8 flex flex-col justify-center">
+                    {/* App Header */}
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                        <app.icon className="w-6 h-6 text-accent group-hover:text-accent-foreground transition-colors" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <h4 className="font-display font-bold text-foreground text-xl">{app.name}</h4>
+                          <span className="px-3 py-1 text-xs font-medium bg-muted text-muted-foreground rounded-full">
+                            {app.availability}
+                          </span>
+                        </div>
+                        <p className="text-muted-foreground mt-2 leading-relaxed">
+                          {app.description}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Key Contributions */}
+                    <div className="pt-4 border-t border-border/50">
+                      <p className="text-sm font-semibold text-foreground mb-3">Key Contributions</p>
+                      <div className="flex flex-wrap gap-2">
+                        {app.contributions.map((contrib) => (
+                          <span
+                            key={contrib}
+                            className="px-3 py-1.5 text-sm bg-accent/10 text-accent rounded-lg font-medium hover:bg-accent/20 transition-colors"
+                          >
+                            {contrib}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
