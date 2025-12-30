@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Users, Globe, Heart, Smartphone, Leaf, MapPin, FileText, Recycle, Video, Baby, TreePine, Store } from "lucide-react";
+import { useRef, useState } from "react";
+import { Users, Globe, Heart, Smartphone, Leaf, MapPin, FileText, Recycle, Video, Baby, TreePine, Store, ZoomIn } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 // Import project images
 import appKoala from "@/assets/projects/app-10.jpg";
@@ -17,6 +18,7 @@ import appByoorakn from "@/assets/projects/app-2.jpg";
 export const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
 
   const researchProjects = [
     {
@@ -215,13 +217,19 @@ export const Projects = () => {
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
               >
                 {/* Project Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div 
+                  className="relative aspect-[4/3] overflow-hidden cursor-pointer"
+                  onClick={() => setSelectedImage({ src: app.image, alt: `${app.name} app screenshot` })}
+                >
                   <img 
                     src={app.image} 
                     alt={`${app.name} app screenshot`}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t ${app.color} opacity-30`} />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
                 </div>
                 
                 {/* Content */}
@@ -290,6 +298,19 @@ export const Projects = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Lightbox Modal */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-[90vw] max-h-[90vh] p-0 border-none bg-transparent">
+          {selectedImage && (
+            <img 
+              src={selectedImage.src} 
+              alt={selectedImage.alt}
+              className="w-full h-full object-contain rounded-lg"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
