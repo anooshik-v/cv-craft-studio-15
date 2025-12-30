@@ -205,47 +205,51 @@ export const Projects = () => {
             Apps I've contributed to as a Flutter Developer, combining technical expertise with UX research
           </p>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {mobileApps.map((app, index) => (
               <motion.div
                 key={app.name}
-                className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg group"
+                className="bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg group flex flex-col"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.05 }}
               >
                 {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <img 
                     src={app.image} 
                     alt={`${app.name} app screenshot`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${app.color} opacity-40`} />
+                  <div className={`absolute inset-0 bg-gradient-to-t ${app.color} opacity-30`} />
                 </div>
                 
-                <div className="p-5">
-                  <div className="flex items-start gap-3 mb-3">
+                {/* Content */}
+                <div className="p-5 flex flex-col flex-grow">
+                  {/* App Header */}
+                  <div className="flex items-center gap-3 mb-3">
                     <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">
                       <app.icon className="w-5 h-5 text-accent" />
                     </div>
                     <div>
-                      <h4 className="font-display font-bold text-foreground text-base">{app.name}</h4>
+                      <h4 className="font-display font-bold text-foreground text-base leading-tight">{app.name}</h4>
                       <span className="text-xs text-muted-foreground">{app.availability}</span>
                     </div>
                   </div>
                   
+                  {/* Description */}
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
                     {app.description}
                   </p>
                   
-                  <div className="pt-3 border-t border-border/50">
-                    <p className="text-xs font-semibold text-muted-foreground mb-2">Key Contributions:</p>
+                  {/* Key Contributions */}
+                  <div className="pt-3 border-t border-border/50 mt-auto">
+                    <p className="text-xs font-semibold text-foreground/70 mb-2">Key Contributions:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {app.contributions.map((contrib) => (
                         <span
                           key={contrib}
-                          className="px-2 py-1 text-xs bg-accent/10 text-accent rounded-md font-medium"
+                          className="px-2.5 py-1 text-xs bg-accent/10 text-accent rounded-full font-medium"
                         >
                           {contrib}
                         </span>
