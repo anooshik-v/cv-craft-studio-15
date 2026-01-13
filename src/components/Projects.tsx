@@ -5,15 +5,15 @@ import { Users, Globe, Heart, Smartphone, Leaf, MapPin, FileText, Recycle, Video
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 // Import project images
-import appKoala from "@/assets/projects/app-10.jpg";
-import appViveo from "@/assets/projects/app-9.jpg";
-import appNoomee from "@/assets/projects/app-8.jpg";
-import appDoxi from "@/assets/projects/app-7.jpg";
-import appCannachange from "@/assets/projects/app-6.jpg";
-import appTrashTalk from "@/assets/projects/app-5.jpg";
-import appCommuniTree from "@/assets/projects/app-4.jpg";
-import appLocalLoyal from "@/assets/projects/app-3.jpg";
-import appByoorakn from "@/assets/projects/app-2.jpg";
+import appKoala from "@/assets/projects/app-2.jpg";
+import appViveo from "@/assets/projects/app-3.jpg";
+import appNoomee from "@/assets/projects/app-4.jpg";
+import appDoxi from "@/assets/projects/app-4-2.jpg";
+import appCannachange from "@/assets/projects/app-5.jpg";
+import appTrashTalk from "@/assets/projects/app-6.jpg";
+import appCommuniTree from "@/assets/projects/app-7.jpg";
+import appLocalLoyal from "@/assets/projects/app-8.jpg";
+import appByoorakn from "@/assets/projects/app-9.jpg";
 
 export const Projects = () => {
   const ref = useRef(null);
